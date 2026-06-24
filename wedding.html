@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Poorva ❤️ Prasad | Wedding Invitation</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:'Cormorant Garamond',serif;
+background:linear-gradient(135deg,#fff0f5,#f8e8ff);
+color:#4a2c4d;
+overflow-x:hidden;
+}
+
+/* COVER */
+.cover{
+position:fixed;
+inset:0;
+background:linear-gradient(135deg,#ffe4ec,#f3dcff);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+z-index:9999;
+transition:1s;
+padding:20px;
+}
+
+.cover.hide{
+opacity:0;
+visibility:hidden;
+transform:scale(1.1);
+}
+
+.logo{
+width:150px;height:150px;
+border:2px solid #7a3f74;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:38px;
+font-weight:bold;
+color:#7a3f74;
+animation:pulse 2s infinite;
+margin-bottom:25px;
+}
+
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.05);}
+100%{transform:scale(1);}
+}
+
+.open-btn{
+padding:14px 35px;
+border:none;
+background:#7a3f74;
+color:white;
+border-radius:40px;
+cursor:pointer;
+font-size:18px;
+font-weight:bold;
+margin-top:20px;
+}
+
+/* HERO */
+.hero{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+.hero h1{font-size:75px;}
+.heart{font-size:40px;margin:15px 0;}
+
+/* SECTIONS */
+.section{padding:70px 20px;text-align:center;}
+
+.card{
+max-width:500px;
+margin:auto;
+background:rgba(255,255,255,.6);
+backdrop-filter:blur(10px);
+padding:30px;
+border-radius:25px;
+border:1px solid rgba(122,63,116,.2);
+}
+
+/* COUNTDOWN */
+.countdown{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px;
+max-width:700px;
+margin:auto;
+}
+
+.box{
+background:rgba(255,255,255,.7);
+padding:20px;
+border-radius:20px;
+border:1px solid rgba(122,63,116,.2);
+}
+
+.box span{display:block;font-size:32px;font-weight:bold;}
+
+/* TIMELINE */
+.timeline{
+max-width:500px;
+margin:auto;
+text-align:left;
+border-left:2px solid rgba(122,63,116,.4);
+padding-left:25px;
+}
+
+.event{position:relative;margin-bottom:35px;}
+
+.event::before{
+content:'';
+position:absolute;
+left:-33px;
+top:8px;
+width:12px;height:12px;
+background:#7a3f74;
+border-radius:50%;
+}
+
+/* SCRATCH */
+#scratchContainer{
+position:relative;
+width:320px;
+height:180px;
+margin:auto;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+#dateContent{
+position:absolute;
+inset:0;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ffd6e8,#edd6ff);
+}
+
+/* canvas layer */
+canvas{
+position:absolute;
+inset:0;
+cursor:pointer;
+transition:1s ease;
+}
+
+/* ✨ REVEAL ANIMATION */
+.reveal canvas{
+opacity:0;
+transform:scale(1.3);
+}
+
+/* content animation */
+.reveal #dateContent{
+animation:popReveal 1s ease forwards;
+}
+
+@keyframes popReveal{
+0%{transform:scale(0.8);opacity:0;}
+100%{transform:scale(1);opacity:1;}
+}
+
+/* FOOTER */
+.footer{padding:80px 20px;text-align:center;}
+.footer h2{font-size:50px;}
+
+/* MOBILE */
+@media(max-width:600px){
+.hero h1{font-size:52px;}
+.countdown{grid-template-columns:repeat(2,1fr);}
+#scratchContainer{width:290px;height:170px;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="cover" id="cover">
+<div class="logo">P ❤️ P</div>
+<h1 style="font-size:55px;">Poorva & Prasad</h1>
+<p style="letter-spacing:5px;margin-top:10px;">WEDDING INVITATION</p>
+
+<button class="open-btn" onclick="openInvite()">Tap To Open</button>
+</div>
+
+<section class="hero">
+<p style="letter-spacing:4px;">WE ARE GETTING ENGAGED</p>
+<h1>Poorva</h1>
+<div class="heart">❤️</div>
+<h1>Prasad</h1>
+<h3 style="margin-top:25px;font-weight:400;">Request the honour of your presence</h3>
+</section>
+
+<section class="section">
+<h2 style="font-size:45px;margin-bottom:25px;">Scratch To Reveal</h2>
+
+<div id="scratchContainer">
+
+<div id="dateContent">
+<h2 style="font-size:34px;">11 July 2026</h2>
+<p style="font-size:22px;margin-top:10px;">Saturday • 5:00 PM</p>
+</div>
+
+<canvas id="scratchCard" width="320" height="180"></canvas>
+
+</div>
+</section>
+
+<section class="section">
+<h2 style="font-size:45px;margin-bottom:30px;">Countdown</h2>
+
+<div class="countdown">
+<div class="box"><span id="days">00</span>Days</div>
+<div class="box"><span id="hours">00</span>Hours</div>
+<div class="box"><span id="minutes">00</span>Minutes</div>
+<div class="box"><span id="seconds">00</span>Seconds</div>
+</div>
+</section>
+
+<section class="section">
+<h2 style="font-size:45px;margin-bottom:40px;">Wedding Schedule</h2>
+
+<div class="timeline">
+<div class="event"><h3>4:00 PM</h3><p>Guest Arrival</p></div>
+<div class="event"><h3>5:00 PM</h3><p>Wedding Ceremony</p></div>
+<div class="event"><h3>7:00 PM</h3><p>Dinner & Celebration</p></div>
+</div>
+</section>
+
+<section class="section">
+<div class="card">
+<h2>📍 Venue</h2>
+<h3 style="font-size:32px;margin-bottom:12px;">Shree Mangal Karyalay</h3>
+
+<p style="line-height:1.8;">
+Bake Factory,<br>
+Kasba Bawada Shiye Road,<br>
+Near Renuka Hotel, Line Bazar,<br>
+Kolhapur, Maharashtra 416006
+</p>
+
+<button class="open-btn"
+onclick="window.open('https://maps.app.goo.gl/DyBjwomekThmVTAC9?g_st=ac','_blank')">
+View Location
+</button>
+
+<div style="margin-top:25px;border-radius:15px;overflow:hidden;">
+<iframe
+src="https://www.google.com/maps?q=Shree+Mangal+Karyalay+Kolhapur&output=embed"
+width="100%" height="250" style="border:0;" loading="lazy"></iframe>
+</div>
+
+</div>
+</section>
+
+<div class="footer">
+<h2>Thank You</h2>
+<p style="margin-top:15px;">We look forward to celebrating with you.</p>
+<h3 style="margin-top:20px;font-size:35px;">Poorva ❤️ Prasad</h3>
+</div>
+
+<script>
+
+function openInvite(){
+document.getElementById("cover").classList.add("hide");
+}
+
+/* countdown */
+const weddingDate = new Date("July 11, 2026 17:00:00").getTime();
+
+setInterval(()=>{
+const now = new Date().getTime();
+const distance = weddingDate - now;
+
+document.getElementById("days").innerHTML = Math.floor(distance/(1000*60*60*24));
+document.getElementById("hours").innerHTML = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+document.getElementById("minutes").innerHTML = Math.floor((distance%(1000*60*60))/(1000*60));
+document.getElementById("seconds").innerHTML = Math.floor((distance%(1000*60))/1000);
+},1000);
+
+
+/* SCRATCH LOGIC (NEW) */
+const canvas = document.getElementById("scratchCard");
+const ctx = canvas.getContext("2d");
+
+const container = document.getElementById("scratchContainer");
+
+ctx.fillStyle="#b86aa6";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="#fff";
+ctx.font="bold 26px Cormorant Garamond";
+ctx.textAlign="center";
+ctx.fillText("Scratch Here ✨",160,95);
+
+let scratched = false;
+
+/* FIRST TOUCH = FULL REVEAL */
+function triggerReveal(){
+if(scratched) return;
+scratched = true;
+
+/* animation */
+container.classList.add("reveal");
+
+/* remove canvas after animation */
+setTimeout(()=>{
+canvas.remove();
+},1000);
+}
+
+/* just detect first scratch */
+function scratch(e){
+triggerReveal();
+
+const rect = canvas.getBoundingClientRect();
+const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+
+ctx.globalCompositeOperation="destination-out";
+ctx.beginPath();
+ctx.arc(x,y,25,0,Math.PI*2);
+ctx.fill();
+}
+
+canvas.addEventListener("mousedown",()=>triggerReveal());
+canvas.addEventListener("mousemove",scratch);
+
+canvas.addEventListener("touchstart",()=>triggerReveal());
+canvas.addEventListener("touchmove",scratch);
+
+</script>
+
+</body>
+</html>
